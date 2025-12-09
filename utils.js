@@ -76,7 +76,9 @@ export function getRandomGif() {
         'https://cdn.discordapp.com/attachments/1438117831685181443/1445530700349440215/67taikotka.gif?ex=6939409f&is=6937ef1f&hm=31846a10fd107efd05aec893b7aef15836a6fb7952ac36d223870049122f760f&',
         'https://cdn.discordapp.com/attachments/1438117831685181443/1445885560718753893/20251203_221238.gif?ex=6939399c&is=6937e81c&hm=188a9cfaa7771746fac979117820ff4d528433834e1147c2f78e325798298d03&',
         'https://cdn.discordapp.com/attachments/1438117831685181443/1445546197375914004/trajkocze2-ezgif.com-crop.gif?ex=69394f0e&is=6937fd8e&hm=a2d59ab407ec4f5cba2391e16f20e398fc1d7d8e5f2900f23e22313486127329&',
-        'https://cdn.discordapp.com/attachments/1438117831685181443/1445041399983640686/Pi7_GIF_CMP.gif?ex=6939732d&is=693821ad&hm=545accc504c592fea499a022b4d516918bc9f082e91048c8eb4e751611e8f048&'];
+        'https://cdn.discordapp.com/attachments/1438117831685181443/1445041399983640686/Pi7_GIF_CMP.gif?ex=6939732d&is=693821ad&hm=545accc504c592fea499a022b4d516918bc9f082e91048c8eb4e751611e8f048&',
+        'https://cdn.discordapp.com/attachments/1438117831685181443/1448064579035730011/farmazoniarz.avif?ex=6939e6bb&is=6938953b&hm=6b7ed60626679bd59de8fa66dcb96424124d86cdc4d261070d1de409f3b46452&',
+        'https://cdn.discordapp.com/attachments/1438117831685181443/1448065289572061425/guzik.avif?ex=6939e764&is=693895e4&hm=e718e191e19a42158e4cbb5f395c40a865245d79870cc3fb7f8cc153ef37a8f5&'];
     return gifList[Math.floor(Math.random() * gifList.length)];
 }
 

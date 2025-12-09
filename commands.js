@@ -19,7 +19,7 @@ const SHAKE_COMMAND = {
 }
 
 const GIF_COMMAND = {
-    name: 'gif',
+    name: 'randomGif',
     description: 'Wyślij losowy gif',
     type: 1,
     integration_types: [0, 1],

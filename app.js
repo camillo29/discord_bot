@@ -54,7 +54,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             });
         }
 
-        if (name === 'gif') {
+        if (name === 'randomGif') {
             // Send a message containing random gif
             let content = getRandomGif();
             return res.send({

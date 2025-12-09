@@ -54,7 +54,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             });
         }
 
-        if (name === 'randomGif') {
+        if (name === 'randomgif') {
             // Send a message containing random gif
             let content = getRandomGif();
             return res.send({
@@ -65,30 +65,30 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             });
         }
 
-        if (name === 'nextevent') {
-            console.log('enter nextevent');
-            const guildId = '1404891503364411522'; // replace with your server ID
-            const guild = await client.guilds.fetch(guildId);
-
-            const scheduledEvents = await guild.scheduledEvents.fetch();
-            console.log(scheduledEvents);
-            //const sortedEvents = events.sort((a, b) => a.scheduled_start_time - b.scheduled_start_time);
-            const nextEvent = scheduledEvents.first()
-            console.log(nextEvent);
-            const date = new Date(nextEvent.scheduledStartTimestamp);
-            return res.send({
-                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                data: {
-                    flags: InteractionResponseFlags.IS_COMPONENTS_V2,
-                    components: [
-                        {
-                            type: MessageComponentTypes.TEXT_DISPLAY,
-                            content: `Next event is: ${nextEvent.name} and it is happening at ${date}`,
-                        }
-                    ]
-                },
-            });
-        }
+        // if (name === 'nextevent') {
+        //     console.log('enter nextevent');
+        //     const guildId = '1404891503364411522'; // replace with your server ID
+        //     const guild = await client.guilds.fetch(guildId);
+        //
+        //     const scheduledEvents = await guild.scheduledEvents.fetch();
+        //     console.log(scheduledEvents);
+        //     //const sortedEvents = events.sort((a, b) => a.scheduled_start_time - b.scheduled_start_time);
+        //     const nextEvent = scheduledEvents.first()
+        //     console.log(nextEvent);
+        //     const date = new Date(nextEvent.scheduledStartTimestamp);
+        //     return res.send({
+        //         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        //         data: {
+        //             flags: InteractionResponseFlags.IS_COMPONENTS_V2,
+        //             components: [
+        //                 {
+        //                     type: MessageComponentTypes.TEXT_DISPLAY,
+        //                     content: `Next event is: ${nextEvent.name} and it is happening at ${date}`,
+        //                 }
+        //             ]
+        //         },
+        //     });
+        // }
 
     console.error(`unknown command: ${name}`);
     return res.status(400).json({ error: 'unknown command' });

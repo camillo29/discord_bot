@@ -1,14 +1,13 @@
 import 'dotenv/config';
-import { getRPSChoices } from './game.js';
 import { capitalize, InstallGlobalCommands } from './utils.js';
 
-const NEXT_EVENT_COMMAND = {
-    name: 'nextevent',
-    description: 'When is next event',
-    type: 1,
-    integration_types: [0, 1],
-    contexts: [0, 1, 2],
-};
+// const NEXT_EVENT_COMMAND = {
+//     name: 'nextevent',
+//     description: 'When is next event',
+//     type: 1,
+//     integration_types: [0, 1],
+//     contexts: [0, 1, 2],
+// };
 
 const SHAKE_COMMAND = {
     name: 'szejk',
@@ -19,7 +18,7 @@ const SHAKE_COMMAND = {
 }
 
 const GIF_COMMAND = {
-    name: 'randomGif',
+    name: 'randomgif',
     description: 'Wyślij losowy gif',
     type: 1,
     integration_types: [0, 1],

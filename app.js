@@ -8,7 +8,7 @@ import {
   MessageComponentTypes,
   verifyKeyMiddleware,
 } from 'discord-interactions';
-import {getRandomShake} from './utils.js';
+import {getRandomGif, getRandomShake} from './utils.js';
 
 // Create an express app
 const app = express();
@@ -46,6 +46,17 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         if (name === 'szejk') {
             // Send a message containing random shake gif
             let content = getRandomShake();
+            return res.send({
+                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                data: {
+                    content: content
+                },
+            });
+        }
+
+        if (name === 'gif') {
+            // Send a message containing random gif
+            let content = getRandomGif();
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 data: {

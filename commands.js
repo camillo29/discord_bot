@@ -12,12 +12,20 @@ const NEXT_EVENT_COMMAND = {
 
 const SHAKE_COMMAND = {
     name: 'szejk',
-    description: 'shake command',
+    description: 'Wyślij losowy szejkujący gif',
     type: 1,
     integration_types: [0, 1],
     contexts: [0, 1, 2],
 }
 
-const ALL_COMMANDS = [SHAKE_COMMAND];
+const GIF_COMMAND = {
+    name: 'gif',
+    description: 'Wyślij losowy gif',
+    type: 1,
+    integration_types: [0, 1],
+    contexts: [0, 1, 2],
+}
+
+const ALL_COMMANDS = [SHAKE_COMMAND, GIF_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);

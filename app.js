@@ -46,6 +46,9 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         if (name === 'szejk') {
             // Send a message containing random shake gif
             let content = getRandomShake();
+            if (content.includes('20251130_124448')) {
+                content = '<@485032592396124160> ' + content;
+            }
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 data: {

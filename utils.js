@@ -54,7 +54,8 @@ export function getRandomShake() {
         'https://cdn.discordapp.com/attachments/1438117831685181443/1445003926549037147/20251201_114855.gif?ex=69360486&is=6934b306&hm=0edc9c06d2adfd558d9104c632db162f96555a7851af47e6ff492a4849eeb0f1&',
         'https://cdn.discordapp.com/attachments/1438117831685181443/1447716887386525928/krakotka.gif?ex=6938a2eb&is=6937516b&hm=12541d3e21bf3ca94b392f9bf35ad8c6ce0e18862d7d8f3e639fe0089513d290&',
         'https://cdn.discordapp.com/attachments/1438117831685181443/1447972360706723903/GdBb5T3m-ezgif.com-crop.gif?ex=693990d8&is=69383f58&hm=a41fb6a3333eec7d4b3c4b720b54616739d8eec14ba78e2133299db67eafb839&',
-        'https://cdn.discordapp.com/attachments/1438117831685181443/1444809072368025785/ezgif-66abe9c9c69b20c7.gif?ex=6939438e&is=6937f20e&hm=901d4628f062d18e72dbc20027fe097a89a019448ed905971ed11c6cd06278a3&'];
+        'https://cdn.discordapp.com/attachments/1438117831685181443/1444809072368025785/ezgif-66abe9c9c69b20c7.gif?ex=6939438e&is=6937f20e&hm=901d4628f062d18e72dbc20027fe097a89a019448ed905971ed11c6cd06278a3&',
+        'https://cdn.discordapp.com/attachments/1444831730665132062/1458548695992893672/2025-11-3004-33-46-ezgif.com-crop.gif?ex=69620513&is=6960b393&hm=d18ad2c7cdbabd5dff403690349ea6889a38e8443193c813291576d3e0248777&'];
     return shakeList[Math.floor(Math.random() * shakeList.length)];
 }
 

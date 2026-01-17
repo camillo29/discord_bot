@@ -26,7 +26,7 @@ const client = new Client({
  */
 app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async function (req, res) {
     // Interaction id, type and data
-    const {id, type, data} = req.body;
+    const {id, type, data, member} = req.body;
 
     /**
      * Handle verification requests
@@ -41,7 +41,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
      */
     if (type === InteractionType.APPLICATION_COMMAND) {
         const {name} = data;
-        console.log(req)
+        console.log(member)
 
         if (name === 'szejk') {
             // Send a message containing random shake gif

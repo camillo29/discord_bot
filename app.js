@@ -48,7 +48,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         if (name === 'szejk') {
             // Send a message containing random shake gif
             let content = getRandomShake();
-            if (content.includes('20251130_124448') || userId === '492361124755406858' || userId === '485032592396124160') {
+            if (content.includes('20251130_124448') || user.id === '492361124755406858' || user.id === '485032592396124160') {
                 const timeoutDTO = {
                     communication_disabled_until: new Date(
                         Date.now() + 10 * 60 * 1000

@@ -43,7 +43,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
      */
     if (type === InteractionType.APPLICATION_COMMAND) {
         const {name} = data;
-        const userId = member.user.id;
+        const user = member.user;
 
         if (name === 'szejk') {
             // Send a message containing random shake gif
@@ -55,7 +55,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                     ).toISOString(),
                 };
                 const guild = await client.guilds.fetch(guildId);
-                await guild.members.edit(timeoutDTO, userId);
+                await guild.members.edit(timeoutDTO, user);
                 content = '<@485032592396124160> ' + content;
             }
             return res.send({

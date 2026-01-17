@@ -48,11 +48,25 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         if (name === 'szejk') {
             // Send a message containing random shake gif
             let content = getRandomShake();
-            if (content.includes('20251130_124448') || user.id === '492361124755406858' || user.id === '485032592396124160') {
-                const guild = await client.guilds.fetch(guildId);
-                const member = await guild.members.fetch(user.id)
-                await member.timeout(10 * 60 * 1000, 'Automatyczny timeout za szejk')
-                content = '<@485032592396124160> ' + content;
+            if (content.includes('20251130_124448') || content.includes('20260116_171445') || content.includes('20260116_171512') || content.includes('20260116_171523')) {
+                let timeout = 0;
+                if (content.includes('20251130_124448') || content.includes('20260116_171445')) {
+                    timeout = 5 * 60 * 1000;
+                    content =  'Wygrywasz t/o na 5 minut ' + content;
+                }
+                if (content.includes('20260116_171512')) {
+                    timeout = 10 * 60 * 1000;
+                    content =  'Wygrywasz t/o na 10 minut ' + content;
+                }
+                if(content.includes('20260116_171523')) {
+                    timeout = 15 * 60 * 1000;
+                    content =  'Wygrywasz t/o na 15 minut ' + content;
+                }
+                if (timeout !== 0) {
+                    const guild = await client.guilds.fetch(guildId);
+                    const member = await guild.members.fetch(user.id)
+                    await member.timeout(timeout, 'Automatyczny timeout za szejk')
+                }
             }
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,

@@ -11,7 +11,7 @@ import { capitalize, InstallGlobalCommands } from './utils.js';
 
 const SHAKE_COMMAND = {
     name: 'szejk',
-    description: 'Wyślij losowy szejkujący gif',
+    description: 'Uwaga! Niektóre nagradzają timeoutem',
     type: 1,
     integration_types: [0, 1],
     contexts: [0, 1, 2],

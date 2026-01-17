@@ -19,6 +19,7 @@ const client = new Client({
         GatewayIntentBits.Guilds]
 })
 
+const guildId = '1438117830489935986';
 
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
@@ -41,12 +42,19 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
      */
     if (type === InteractionType.APPLICATION_COMMAND) {
         const {name} = data;
-        console.log(member.user.id);
+        const userId = member.user.id;
 
         if (name === 'szejk') {
             // Send a message containing random shake gif
             let content = getRandomShake();
-            if (content.includes('20251130_124448')) {
+            if (content.includes('20251130_124448') || userId === '492361124755406858') {
+                const timeoutDTO = {
+                    communication_disabled_until: new Date(
+                        Date.now() + 10 * 60 * 1000
+                    ).toISOString(),
+                };
+                const guild = await client.guilds.fetch(guildId);
+                await guild.members.edit(timeoutDTO, userId);
                 content = '<@485032592396124160> ' + content;
             }
             return res.send({

@@ -20,6 +20,7 @@ const client = new Client({
 })
 
 const guildId = '1438117830489935986';
+await client.login(process.env.DISCORD_TOKEN).then(r => console.log('logged in', r));
 
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
@@ -47,7 +48,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         if (name === 'szejk') {
             // Send a message containing random shake gif
             let content = getRandomShake();
-            if (content.includes('20251130_124448') || userId === '492361124755406858') {
+            if (content.includes('20251130_124448') || userId === '492361124755406858' || userId === '485032592396124160') {
                 const timeoutDTO = {
                     communication_disabled_until: new Date(
                         Date.now() + 10 * 60 * 1000
@@ -111,5 +112,4 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
 app.listen(PORT, () => {
   console.log('Listening on port', PORT);
-  client.login(process.env.DISCORD_TOKEN).then(r => console.log('logged in', r));
 });

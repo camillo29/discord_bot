@@ -49,13 +49,9 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             // Send a message containing random shake gif
             let content = getRandomShake();
             if (content.includes('20251130_124448') || user.id === '492361124755406858' || user.id === '485032592396124160') {
-                const timeoutDTO = {
-                    communication_disabled_until: new Date(
-                        Date.now() + 10 * 60 * 1000
-                    ).toISOString(),
-                };
                 const guild = await client.guilds.fetch(guildId);
-                await guild.members.edit(timeoutDTO, user);
+                const member = await guild.members.fetch(user.id)
+                await member.timeout(10 * 60 * 1000, 'Automatyczny timeout za szejk')
                 content = '<@485032592396124160> ' + content;
             }
             return res.send({

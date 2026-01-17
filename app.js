@@ -41,7 +41,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
      */
     if (type === InteractionType.APPLICATION_COMMAND) {
         const {name} = data;
-        console.log(data)
+        console.log(req)
 
         if (name === 'szejk') {
             // Send a message containing random shake gif

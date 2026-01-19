@@ -19,6 +19,8 @@ const client = new Client({
         GatewayIntentBits.Guilds]
 })
 
+let shakeCooldown = new Map();
+
 const guildId = '1438117830489935986';
 await client.login(process.env.DISCORD_TOKEN).then(r => console.log('logged in', r));
 
@@ -47,6 +49,10 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
         if (name === 'szejk') {
             // Send a message containing random shake gif
+            if (shakeCooldown.get(user.id) !== null && Math.abs(new Date() - shakeCooldown.get(user.id)) <= 24 * 60 * 60 * 1000) {
+                const diff = new Date((new Date() - shakeCooldown.get(user.id)));
+                console.log('user '+ user.name + ' ma cooldown, jeszcze: ' + diff.getHours() + ':' + diff.getMinutes() + ':' + diff.getSeconds());
+            }
             let content = getRandomShake();
             if (content.includes('20251130_124448')
                 || content.includes('20260116_171445')
@@ -76,6 +82,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                     await member.timeout(timeout, 'Automatyczny timeout za szejk')
                 }
             }
+            shakeCooldown.set(user.id, new Date());
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 data: {

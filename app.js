@@ -59,7 +59,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                     data: {
                         content: 'Masz cooldown, jeszcze: ' + hours + ':' + minutes + ':' + seconds,
-                        ephemeral: true
+                        flags: 64,
                     },
                 });
             }

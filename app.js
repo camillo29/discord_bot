@@ -55,7 +55,13 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                 const hours = Math.floor(totalSeconds / 3600);
                 const minutes = Math.floor((totalSeconds % 3600) / 60);
                 const seconds = totalSeconds % 60;
-                console.log('user '+ user.name + ' ma cooldown, jeszcze: ' + hours + ':' + minutes + ':' + seconds + ' diff: ' + diff);
+                return res.send({
+                    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                    ephemeral: true,
+                    data: {
+                        content: 'Masz cooldown, jeszcze: ' + hours + ':' + minutes + ':' + seconds
+                    },
+                });
             }
             let content = getRandomShake();
             if (content.includes('20251130_124448')

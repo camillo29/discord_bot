@@ -57,9 +57,9 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                 const seconds = totalSeconds % 60;
                 return res.send({
                     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                    ephemeral: true,
                     data: {
-                        content: 'Masz cooldown, jeszcze: ' + hours + ':' + minutes + ':' + seconds
+                        content: 'Masz cooldown, jeszcze: ' + hours + ':' + minutes + ':' + seconds,
+                        ephemeral: true
                     },
                 });
             }

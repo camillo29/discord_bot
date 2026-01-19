@@ -50,8 +50,8 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         if (name === 'szejk') {
             // Send a message containing random shake gif
             if (shakeCooldown.get(user.id) !== null && Math.abs(new Date() - shakeCooldown.get(user.id)) <= 24 * 60 * 60 * 1000) {
-                const diff = new Date((new Date() - shakeCooldown.get(user.id)));
-                console.log('user '+ user.name + ' ma cooldown, jeszcze: ' + diff.getHours() + ':' + diff.getMinutes() + ':' + diff.getSeconds());
+                const diff = Math.abs(new Date() - shakeCooldown.get(user.id));
+                console.log('user '+ user.name + ' ma cooldown, jeszcze: ' + Math.floor(diff / (60 * 60 * 1000)) + ':' + Math.floor(diff / (60 * 1000)) + ':' + Math.floor(diff / 1000));
             }
             let content = getRandomShake();
             if (content.includes('20251130_124448')

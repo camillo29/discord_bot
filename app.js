@@ -48,19 +48,27 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         if (name === 'szejk') {
             // Send a message containing random shake gif
             let content = getRandomShake();
-            if (content.includes('20251130_124448') || content.includes('20260116_171445') || content.includes('20260116_171512') || content.includes('20260116_171523')) {
+            if (content.includes('20251130_124448')
+                || content.includes('20260116_171445')
+                || content.includes('20260116_171512')
+                || content.includes('20260116_171523')
+                || content.includes('20260116_172828')) {
                 let timeout = 0;
                 if (content.includes('20251130_124448') || content.includes('20260116_171445')) {
                     timeout = 5 * 60 * 1000;
-                    content =  'Wygrywasz t/o na 5 minut ' + content;
+                    content = 'Wygrywasz t/o na 5 minut ' + content;
                 }
                 if (content.includes('20260116_171512')) {
                     timeout = 10 * 60 * 1000;
-                    content =  'Wygrywasz t/o na 10 minut ' + content;
+                    content = 'Wygrywasz t/o na 10 minut ' + content;
                 }
-                if(content.includes('20260116_171523')) {
+                if (content.includes('20260116_171523')) {
                     timeout = 15 * 60 * 1000;
-                    content =  'Wygrywasz t/o na 15 minut ' + content;
+                    content = 'Wygrywasz t/o na 15 minut ' + content;
+                }
+                if (content.includes('20260116_172828')) {
+                    timeout = 60 * 60 * 1000;
+                    content = 'Wygrywasz t/o na 1h ' + content;
                 }
                 if (timeout !== 0) {
                     const guild = await client.guilds.fetch(guildId);

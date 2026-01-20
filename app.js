@@ -77,7 +77,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                     await member.timeout(timeout, 'Automatyczny timeout za szejk')
             }
             console.log('[Shake] Locking user: ' + user.id + ' at: ' + new Date());
-            await kv.set(user.id, new Date());
+            await kv.set(user.id, Date.now());
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 data: {

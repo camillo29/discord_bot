@@ -2,7 +2,6 @@ import 'dotenv/config';
 import express from 'express';
 import {Client, GatewayIntentBits, GuildScheduledEvent} from 'discord.js';
 import {kv} from '@vercel/kv';
-import { createClient } from 'redis';
 import {
   InteractionResponseFlags,
   InteractionResponseType,
@@ -23,7 +22,6 @@ const client = new Client({
 
 const guildId = '1438117830489935986';
 await client.login(process.env.DISCORD_TOKEN).then(r => console.log('logged in', r));
-const redis = await createClient().connect();
 const SHAKE_COOLDOWN_ENABLED = true;
 
 
@@ -52,7 +50,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
         if (name === 'szejk') {
             // Send a message containing random shake gif
-            const lockedAt = await redis.get(user.id);
+            const lockedAt = await kv.get(user.id);
             if (SHAKE_COOLDOWN_ENABLED && lockedAt !== null) {
                 const diff = (24 * 60 * 60 * 1000) - (new Date() - lockedAt);
                 const totalSeconds = Math.ceil(diff / 1000)
@@ -79,7 +77,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                     await member.timeout(timeout, 'Automatyczny timeout za szejk')
             }
             console.log('[Shake] Locking user: ' + user.id + ' at: ' + new Date());
-            await redis.set(user.id, new Date());
+            await kv.set(user.id, new Date());
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 data: {
@@ -134,5 +132,4 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
 app.listen(PORT, () => {
   console.log('Listening on port', PORT);
-
 });

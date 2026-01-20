@@ -51,20 +51,22 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
         if (name === 'szejk') {
             // Send a message containing random shake gif
-            if (SHAKE_COOLDOWN_ENABLED && (shakeCooldown.get(user.id) !== null && Math.abs(new Date() - shakeCooldown.get(user.id)) < 24 * 60 * 60 * 1000)) {
-                console.log('[Shake] User: ' + user.id + ' locked at: ' + shakeCooldown.get(user.id));
+            if (SHAKE_COOLDOWN_ENABLED && shakeCooldown.get(user.id) !== null) {
                 const diff = (24 * 60 * 60 * 1000) - (new Date() - shakeCooldown.get(user.id));
                 const totalSeconds = Math.ceil(diff / 1000)
                 const hours = Math.floor(totalSeconds / 3600);
                 const minutes = Math.floor((totalSeconds % 3600) / 60);
                 const seconds = totalSeconds % 60;
-                return res.send({
-                    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                    data: {
-                        content: 'Masz cooldown, jeszcze: ' + hours + ':' + minutes + ':' + seconds,
-                        flags: 64,
-                    },
-                });
+                console.log('[Shake] User: ' + user.id + ' remaining time: ' + hours + ':' + minutes + ':' + seconds);
+                if (hours <= 0 && minutes <= 0 && seconds <= 0 ) {
+                    return res.send({
+                        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                        data: {
+                            content: 'Masz cooldown, jeszcze: ' + hours + ':' + minutes + ':' + seconds,
+                            flags: 64,
+                        },
+                    });
+                }
             }
             let content = getRandomShake();
             if (content.includes('20260116_172828')) {

@@ -58,7 +58,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                 const minutes = Math.floor((totalSeconds % 3600) / 60);
                 const seconds = totalSeconds % 60;
                 console.log('[Shake] User: ' + user.id + ' remaining time: ' + hours + ':' + minutes + ':' + seconds);
-                if (hours <= 0 && minutes <= 0 && seconds <= 0 ) {
+                if (hours > 0 && minutes > 0 && seconds > 0 ) {
                     return res.send({
                         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                         data: {

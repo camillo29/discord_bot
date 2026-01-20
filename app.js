@@ -19,7 +19,7 @@ const client = new Client({
         GatewayIntentBits.Guilds]
 })
 
-let shakeCooldown = new Map();
+const shakeCooldown = new Map();
 
 const guildId = '1438117830489935986';
 await client.login(process.env.DISCORD_TOKEN).then(r => console.log('logged in', r));

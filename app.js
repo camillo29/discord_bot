@@ -24,6 +24,8 @@ let shakeCooldown = new Map();
 const guildId = '1438117830489935986';
 await client.login(process.env.DISCORD_TOKEN).then(r => console.log('logged in', r));
 
+const SHAKE_COOLDOWN_ENABLED = true;
+
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
  * Parse request body and verifies incoming requests using discord-interactions package
@@ -49,49 +51,30 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
         if (name === 'szejk') {
             // Send a message containing random shake gif
-            if (shakeCooldown.get(user.id) !== null && Math.abs(new Date() - shakeCooldown.get(user.id)) < 24 * 60 * 60 * 1000) {
+            if (SHAKE_COOLDOWN_ENABLED && (shakeCooldown.get(user.id) !== null && Math.abs(new Date() - shakeCooldown.get(user.id)) < 24 * 60 * 60 * 1000)) {
+                console.log('[Shake] User: ' + user.id + ' locked at: ' + shakeCooldown.get(user.id));
                 const diff = (24 * 60 * 60 * 1000) - (new Date() - shakeCooldown.get(user.id));
                 const totalSeconds = Math.ceil(diff / 1000)
                 const hours = Math.floor(totalSeconds / 3600);
                 const minutes = Math.floor((totalSeconds % 3600) / 60);
                 const seconds = totalSeconds % 60;
-                // return res.send({
-                //     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                //     data: {
-                //         content: 'Masz cooldown, jeszcze: ' + hours + ':' + minutes + ':' + seconds,
-                //         flags: 64,
-                //     },
-                // });
+                return res.send({
+                    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                    data: {
+                        content: 'Masz cooldown, jeszcze: ' + hours + ':' + minutes + ':' + seconds,
+                        flags: 64,
+                    },
+                });
             }
             let content = getRandomShake();
-            if (content.includes('20251130_124448')
-                || content.includes('20260116_171445')
-                || content.includes('20260116_171512')
-                || content.includes('20260116_171523')
-                || content.includes('20260116_172828')) {
-                let timeout = 0;
-                if (content.includes('20251130_124448') || content.includes('20260116_171445')) {
-                    timeout = 5 * 60 * 1000;
-                    content = 'Wygrywasz t/o na 5 minut ' + content;
-                }
-                if (content.includes('20260116_171512')) {
-                    timeout = 10 * 60 * 1000;
-                    content = 'Wygrywasz t/o na 10 minut ' + content;
-                }
-                if (content.includes('20260116_171523')) {
-                    timeout = 15 * 60 * 1000;
-                    content = 'Wygrywasz t/o na 15 minut ' + content;
-                }
-                if (content.includes('20260116_172828')) {
-                    timeout = 60 * 60 * 1000;
+            if (content.includes('20260116_172828')) {
+                    let timeout = 60 * 60 * 1000;
                     content = 'Wygrywasz t/o na 1h ' + content;
-                }
-                if (timeout !== 0) {
                     const guild = await client.guilds.fetch(guildId);
                     const member = await guild.members.fetch(user.id)
                     await member.timeout(timeout, 'Automatyczny timeout za szejk')
-                }
             }
+            console.log('[Shake] Locking user: ' + user.id + ' at: ' + new Date());
             shakeCooldown.set(user.id, new Date());
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,

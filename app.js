@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import {Client, GatewayIntentBits, GuildScheduledEvent} from 'discord.js';
+import {kv} from '@vercel/kv';
 import {
   InteractionResponseFlags,
   InteractionResponseType,
@@ -18,8 +19,6 @@ const client = new Client({
     intents: [
         GatewayIntentBits.Guilds]
 })
-
-const shakeCooldown = new Map();
 
 const guildId = '1438117830489935986';
 await client.login(process.env.DISCORD_TOKEN).then(r => console.log('logged in', r));
@@ -51,8 +50,9 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
 
         if (name === 'szejk') {
             // Send a message containing random shake gif
-            if (SHAKE_COOLDOWN_ENABLED && shakeCooldown.get(user.id) !== null) {
-                const diff = (24 * 60 * 60 * 1000) - (new Date() - shakeCooldown.get(user.id));
+            const lockedAt = await kv.get(user.id);
+            if (SHAKE_COOLDOWN_ENABLED && lockedAt !== null) {
+                const diff = (24 * 60 * 60 * 1000) - (new Date() - lockedAt);
                 const totalSeconds = Math.ceil(diff / 1000)
                 const hours = Math.floor(totalSeconds / 3600);
                 const minutes = Math.floor((totalSeconds % 3600) / 60);
@@ -77,7 +77,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                     await member.timeout(timeout, 'Automatyczny timeout za szejk')
             }
             console.log('[Shake] Locking user: ' + user.id + ' at: ' + new Date());
-            shakeCooldown.set(user.id, new Date());
+            await kv.set(user.id, new Date());
             return res.send({
                 type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 data: {

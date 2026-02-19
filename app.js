@@ -52,7 +52,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             // Send a message containing random shake gif
             const lockedAt = await kv.get(user.id);
             if (SHAKE_COOLDOWN_ENABLED && lockedAt !== null) {
-                const diff = (24 * 60 * 60 * 1000) - (new Date() - lockedAt);
+                const diff = (12 * 60 * 60 * 1000) - (new Date() - lockedAt);
                 const totalSeconds = Math.ceil(diff / 1000)
                 const hours = Math.floor(totalSeconds / 3600);
                 const minutes = Math.floor((totalSeconds % 3600) / 60);

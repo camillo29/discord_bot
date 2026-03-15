@@ -51,14 +51,6 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         if (name === 'szejk') {
             // Send a message containing random shake gif
             const lockedAt = await kv.get(user.id);
-            if (user.id === '485032592396124160') {
-                return res.send({
-                    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                    data: {
-                        content: 'https://cdn.discordapp.com/attachments/1438117831685181443/1474033645110034587/ezgif.com-video-to-gif-converter_1.gif?ex=6998604f&is=69970ecf&hm=059d0573187f5243c6f001d0411f8cd118bbdac3e09167111699028d59e1e3bf&'
-                    },
-                });
-            }
             if (SHAKE_COOLDOWN_ENABLED && lockedAt !== null) {
                 const diff = (12 * 60 * 60 * 1000) - (new Date() - lockedAt);
                 const totalSeconds = Math.ceil(diff / 1000)

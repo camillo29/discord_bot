@@ -79,7 +79,8 @@ export function getRandomShake() {
         'https://cdn.discordapp.com/attachments/1438117831685181443/1472312438077657171/2025-11-3004-33-46-ezgif.com-crop.gif?ex=6994178f&is=6992c60f&hm=6621465d5fa7f1e54d00d62c23ff14061f0aad4b3a7d3f25800b6f2e192f9880&', //wylder
         'https://cdn.discordapp.com/attachments/1390359198365384714/1473107979459891315/skafander.gif?ex=69950237&is=6993b0b7&hm=5aeb9c1b8097b530840dfc231a4f391c1e5bd3db8a474e87f8199ef608625901&', //astronaut
         'https://cdn.discordapp.com/attachments/1438117831685181443/1474033645110034587/ezgif.com-video-to-gif-converter_1.gif?ex=6998604f&is=69970ecf&hm=059d0573187f5243c6f001d0411f8cd118bbdac3e09167111699028d59e1e3bf&', //true ninjago
-        'https://cdn.discordapp.com/attachments/1438117831685181443/1477293316315021414/2025-11-3004-33-46-ezgif.com-gif-maker1.gif?ex=69a43c1d&is=69a2ea9d&hm=728ca3b3cd512aae9cdfc0e96411db0ed4c1be3f1798acd4f2bd4e623b27bd7d&']; //achtungor
+        'https://cdn.discordapp.com/attachments/1438117831685181443/1477293316315021414/2025-11-3004-33-46-ezgif.com-gif-maker1.gif?ex=69a43c1d&is=69a2ea9d&hm=728ca3b3cd512aae9cdfc0e96411db0ed4c1be3f1798acd4f2bd4e623b27bd7d&', //achtungor
+        'https://cdn.discordapp.com/attachments/1438117831685181443/1484312782370246757/australikotka.gif?ex=69be6e40&is=69bd1cc0&hm=784ec906ad61555e59ec404c2247576882a995148daab935440e41cf7a3fbf4c&']; //australia
     return shakeList[Math.floor(Math.random() * shakeList.length)];
 }
 

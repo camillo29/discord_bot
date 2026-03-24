@@ -86,13 +86,15 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                         },
                     });
                 } catch (error) {
-                    console.error('[Shake] ' + error);
-                    return res.send({
-                        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                        data: {
-                            content: '<@485032592396124160> Mam wylew, sprawdź logi'
-                        },
-                    });
+                    if (user.id !== '485032592396124160' && user.id !== '382500666855129098') {
+                        console.error('[Shake] ' + error);
+                        return res.send({
+                            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                            data: {
+                                content: '<@485032592396124160> Mam wylew, sprawdź logi'
+                            },
+                        });
+                    }
                 }
             }
         }

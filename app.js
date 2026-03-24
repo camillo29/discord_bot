@@ -52,38 +52,49 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             // Send a message containing random shake gif
             const lockedAt = await kv.get(user.id);
             if (SHAKE_COOLDOWN_ENABLED && lockedAt !== null) {
-                const diff = (12 * 60 * 60 * 1000) - (new Date() - lockedAt);
-                const totalSeconds = Math.ceil(diff / 1000)
-                const hours = Math.floor(totalSeconds / 3600);
-                const minutes = Math.floor((totalSeconds % 3600) / 60);
-                const seconds = totalSeconds % 60;
-                console.log('[Shake] User: ' + user.id + ' remaining time: ' + hours + ':' + minutes + ':' + seconds);
-                if (hours > 0 && minutes > 0 && seconds > 0 ) {
+                try {
+                    const diff = (12 * 60 * 60 * 1000) - (new Date() - lockedAt);
+                    const totalSeconds = Math.ceil(diff / 1000)
+                    const hours = Math.floor(totalSeconds / 3600);
+                    const minutes = Math.floor((totalSeconds % 3600) / 60);
+                    const seconds = totalSeconds % 60;
+                    console.log('[Shake] User: ' + user.id + ' remaining time: ' + hours + ':' + minutes + ':' + seconds);
+                    if (hours > 0 && minutes > 0 && seconds > 0) {
+                        return res.send({
+                            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                            data: {
+                                content: 'Masz cooldown, jeszcze: ' + hours + ':' + minutes + ':' + seconds,
+                                flags: 64,
+                            },
+                        });
+                    }
+                    let content = getRandomShake();
+                    console.log('[Shake] Content prepared: ' + content);
+                    if (content.includes('20260116_172828')) {
+                        let timeout = 60 * 60 * 1000;
+                        content = 'Wygrywasz t/o na 1h ' + content;
+                        const guild = await client.guilds.fetch(guildId);
+                        const member = await guild.members.fetch(user.id)
+                        await member.timeout(timeout, 'Automatyczny timeout za szejk')
+                    }
+                    console.log('[Shake] Locking user: ' + user.id + ' at: ' + new Date());
+                    await kv.set(user.id, Date.now());
                     return res.send({
                         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                         data: {
-                            content: 'Masz cooldown, jeszcze: ' + hours + ':' + minutes + ':' + seconds,
-                            flags: 64,
+                            content: content
+                        },
+                    });
+                } catch (error) {
+                    console.error('[Shake] ' + error);
+                    return res.send({
+                        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                        data: {
+                            content: '<@485032592396124160> Mam wylew, sprawdź logi'
                         },
                     });
                 }
             }
-            let content = getRandomShake();
-            if (content.includes('20260116_172828')) {
-                    let timeout = 60 * 60 * 1000;
-                    content = 'Wygrywasz t/o na 1h ' + content;
-                    const guild = await client.guilds.fetch(guildId);
-                    const member = await guild.members.fetch(user.id)
-                    await member.timeout(timeout, 'Automatyczny timeout za szejk')
-            }
-            console.log('[Shake] Locking user: ' + user.id + ' at: ' + new Date());
-            await kv.set(user.id, Date.now());
-            return res.send({
-                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                data: {
-                    content: content
-                },
-            });
         }
 
         if (name === 'randomgif') {

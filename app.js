@@ -71,6 +71,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                     let content = getRandomShake();
                     console.log('[Shake] Content prepared: ' + content);
                     if (content.includes('20260116_172828')) {
+                        console.log('[Shake] timeouting user: ' + user.id)
                         let timeout = 60 * 60 * 1000;
                         content = 'Wygrywasz t/o na 1h ' + content;
                         const guild = await client.guilds.fetch(guildId);

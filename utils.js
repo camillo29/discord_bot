@@ -55,14 +55,14 @@ export function getRandomShake() {
         // 'https://cdn.discordapp.com/attachments/1438117831685181443/1447716887386525928/krakotka.gif?ex=6938a2eb&is=6937516b&hm=12541d3e21bf3ca94b392f9bf35ad8c6ce0e18862d7d8f3e639fe0089513d290&',        //cracow
         // 'https://cdn.discordapp.com/attachments/1438117831685181443/1447972360706723903/GdBb5T3m-ezgif.com-crop.gif?ex=693990d8&is=69383f58&hm=a41fb6a3333eec7d4b3c4b720b54616739d8eec14ba78e2133299db67eafb839&', //gdynia
         // 'https://cdn.discordapp.com/attachments/1438117831685181443/1444809072368025785/ezgif-66abe9c9c69b20c7.gif?ex=6939438e&is=6937f20e&hm=901d4628f062d18e72dbc20027fe097a89a019448ed905971ed11c6cd06278a3&',  //dynamite
-        'https://cdn.discordapp.com/attachments/1444831730665132062/1458548695992893672/2025-11-3004-33-46-ezgif.com-crop.gif?ex=69620513&is=6960b393&hm=d18ad2c7cdbabd5dff403690349ea6889a38e8443193c813291576d3e0248777&', //miku
+        // 'https://cdn.discordapp.com/attachments/1444831730665132062/1458548695992893672/2025-11-3004-33-46-ezgif.com-crop.gif?ex=69620513&is=6960b393&hm=d18ad2c7cdbabd5dff403690349ea6889a38e8443193c813291576d3e0248777&', //miku
         // 'https://cdn.discordapp.com/attachments/1438117831685181443/1444670094197133352/AutismShakey.gif?ex=69639adf&is=6962495f&hm=bf201114566bc112a3173a21a78cd4c26a97101560ca8f2c3db5e4ff442cebad&', //autism
         'https://cdn.discordapp.com/attachments/1438117831685181443/1461052600878239755/2025-11-3004-33-46-ezgif.com-crop.gif?ex=696926c5&is=6967d545&hm=311494eaf80bf0557b72faa9ccf2b4b69cf8110422dd5db343cc1509deed69fc&', //cheese
-        'https://cdn.discordapp.com/attachments/1445048852918046770/1461109369423921337/20260114_220232.gif?ex=69695ba3&is=69680a23&hm=af46a08dbccfe82f17707f0f7a038f6f5c668805f641188fdae649244f8114ba&', //sasuke
-        'https://cdn.discordapp.com/attachments/1445048852918046770/1461109370094878930/20260114_220321.gif', //naruto
+        // 'https://cdn.discordapp.com/attachments/1445048852918046770/1461109369423921337/20260114_220232.gif?ex=69695ba3&is=69680a23&hm=af46a08dbccfe82f17707f0f7a038f6f5c668805f641188fdae649244f8114ba&', //sasuke
+        // 'https://cdn.discordapp.com/attachments/1445048852918046770/1461109370094878930/20260114_220321.gif', //naruto
         'https://cdn.discordapp.com/attachments/1445048852918046770/1461109370472628267/20260114_220903.gif?ex=69695ba4&is=69680a24&hm=124d339b414e7904fee6b7c63a4b889bbe76c7745b4be8427f803228d7758d7c&', //pokemon
         'https://cdn.discordapp.com/attachments/1445048852918046770/1461109370808041562/20260114_221400.gif?ex=69695ba4&is=69680a24&hm=e5bd2cd0aff9fc31ae80b67db02cf0f184b45868a9bb7a06ae104f25545b6c9d&', //soplica
-        'https://cdn.discordapp.com/attachments/1445048852918046770/1461109371139526686/20260114_221816.gif?ex=69695ba4&is=69680a24&hm=f9aacdbe624da9d4f554b15c1e84ffc0b6bc213ca28de89abea934d1c0fecc44&', //creatine
+        // 'https://cdn.discordapp.com/attachments/1445048852918046770/1461109371139526686/20260114_221816.gif?ex=69695ba4&is=69680a24&hm=f9aacdbe624da9d4f554b15c1e84ffc0b6bc213ca28de89abea934d1c0fecc44&', //creatine
         // 'https://cdn.discordapp.com/attachments/1445048852918046770/1461109372351680553/20260114_222549.gif?ex=69695ba4&is=69680a24&hm=b261aa5c0c5326ce4473e9b235e1724807b957150ac86b1061a5277a4de3d044&', //yami
         // 'https://cdn.discordapp.com/attachments/1438117831685181443/1461456680733904926/20260115_212644.gif?ex=696a9f19&is=69694d99&hm=7363cc9730186cd7c28bb24eb76bfe6038b2a802b8a3242dde24cd13e2041d4f&', //theraflu
         // 'https://cdn.discordapp.com/attachments/1445048852918046770/1461755810546979023/20260116_171445.gif?ex=696d072f&is=696bb5af&hm=c4bacdb9594b3253dd0ed7105bca917a2232a75d74d050a45f44ef658c43489a&', //5 min
@@ -74,12 +74,12 @@ export function getRandomShake() {
         'https://cdn.discordapp.com/attachments/1445048852918046770/1463122068353716340/20260120_112248.gif?ex=6970ae1c&is=696f5c9c&hm=19c35a3918cbcedc5f134d47604a23f3e22b933981e5bd3c4077bed5a5a4dfd1&', //estus
         'https://cdn.discordapp.com/attachments/1445048852918046770/1463122068760428566/20260120_112600.gif?ex=6970ae1c&is=696f5c9c&hm=68cabfd246887bd7340e2c60d466ce8069e50ea5c92b963e23cf1db1938064e8&', //bloodborne
         'https://cdn.discordapp.com/attachments/1438117831685181443/1463311765939945555/y8t37dd1-ezgif.com-crop.gif?ex=69715ec8&is=69700d48&hm=0370557e80d77fa1150d0ee87b0f4c46c6cd55b9978619e44992d556fa69c36e&', //recluse
-        'https://cdn.discordapp.com/attachments/1438117831685181443/1469027387848003709/kruszkotka.gif?ex=698629de&is=6984d85e&hm=2e040a5ffbe43c02e99f284c5594606d12f05888f930fb3fa3c12ae59ecf8782&', //kruszor
+        // 'https://cdn.discordapp.com/attachments/1438117831685181443/1469027387848003709/kruszkotka.gif?ex=698629de&is=6984d85e&hm=2e040a5ffbe43c02e99f284c5594606d12f05888f930fb3fa3c12ae59ecf8782&', //kruszor
         // 'https://cdn.discordapp.com/attachments/1390359198365384714/1469040149533822996/shrimp.gif?ex=698635c1&is=6984e441&hm=ceac267a381cf4b8529ffaf00fab033b57b0e6669e6ac8f7d166a6a84457a536&', //shrimp
         'https://cdn.discordapp.com/attachments/1438117831685181443/1472312438077657171/2025-11-3004-33-46-ezgif.com-crop.gif?ex=6994178f&is=6992c60f&hm=6621465d5fa7f1e54d00d62c23ff14061f0aad4b3a7d3f25800b6f2e192f9880&', //wylder
         'https://cdn.discordapp.com/attachments/1390359198365384714/1473107979459891315/skafander.gif?ex=69950237&is=6993b0b7&hm=5aeb9c1b8097b530840dfc231a4f391c1e5bd3db8a474e87f8199ef608625901&', //astronaut
         'https://cdn.discordapp.com/attachments/1438117831685181443/1474033645110034587/ezgif.com-video-to-gif-converter_1.gif?ex=6998604f&is=69970ecf&hm=059d0573187f5243c6f001d0411f8cd118bbdac3e09167111699028d59e1e3bf&', //true ninjago
-        'https://cdn.discordapp.com/attachments/1438117831685181443/1477293316315021414/2025-11-3004-33-46-ezgif.com-gif-maker1.gif?ex=69a43c1d&is=69a2ea9d&hm=728ca3b3cd512aae9cdfc0e96411db0ed4c1be3f1798acd4f2bd4e623b27bd7d&', //achtungor
+        // 'https://cdn.discordapp.com/attachments/1438117831685181443/1477293316315021414/2025-11-3004-33-46-ezgif.com-gif-maker1.gif?ex=69a43c1d&is=69a2ea9d&hm=728ca3b3cd512aae9cdfc0e96411db0ed4c1be3f1798acd4f2bd4e623b27bd7d&', //achtungor
         'https://cdn.discordapp.com/attachments/1438117831685181443/1484312782370246757/australikotka.gif?ex=69be6e40&is=69bd1cc0&hm=784ec906ad61555e59ec404c2247576882a995148daab935440e41cf7a3fbf4c&']; //australia
     return shakeList[Math.floor(Math.random() * shakeList.length)];
 }

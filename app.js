@@ -100,11 +100,12 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             }
         }
 
-        if (name === 'removetimeout') {
+        if (name === 'removecooldown') {
             try {
                 if (user.id === '485032592396124160') {
                     let userId = data.options.find(opt => opt.name === 'userId')?.value;
-                    await kv.set(userId, null);
+                    console.log('[Removecooldown] removing cooldown for' + userId);
+                    await kv.remove(userId);
                     return res.send({
                         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                         data: {

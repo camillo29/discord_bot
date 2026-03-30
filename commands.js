@@ -26,13 +26,13 @@ const GIF_COMMAND = {
     contexts: [0, 1, 2],
 }
 
-const REMOVE_TIMEOUT_COMMAND = new SlashCommandBuilder()
-    .setName('removetimeout')
-    .setDescription('[Admin] zdejmij timeout')
-    .addStringOption((option) => option.setName('userid').setDescription('ID usera do usunięcia timeoutu').setRequired(true))
+const REMOVE_COOLDOWN_COMMAND = new SlashCommandBuilder()
+    .setName('removecooldown')
+    .setDescription('[Admin] zdejmij cooldown')
+    .addStringOption((option) => option.setName('userid').setDescription('ID usera do usunięcia cooldownu').setRequired(true))
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
 
-const ALL_COMMANDS = [SHAKE_COMMAND, GIF_COMMAND, REMOVE_TIMEOUT_COMMAND];
+const ALL_COMMANDS = [SHAKE_COMMAND, GIF_COMMAND, REMOVE_COOLDOWN_COMMAND];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);

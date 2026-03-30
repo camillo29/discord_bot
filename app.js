@@ -101,23 +101,27 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         }
 
         if (name === 'removetimeout') {
-            if (user.id === '485032592396124160') {
-                let userId = data.options.find(opt => opt.name === 'userId')?.value;
-                await kv.set(userId, null);
-                return res.send({
-                    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                    data: {
-                        content: 'Timeout dla ' + userId + 'zdjęty'
-                    },
-                });
-            } else {
-                return res.send({
-                    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                    data: {
-                        content: 'Brak uprawnień',
-                        flags: 64,
-                    },
-                });
+            try {
+                if (user.id === '485032592396124160') {
+                    let userId = data.options.find(opt => opt.name === 'userId')?.value;
+                    await kv.set(userId, null);
+                    return res.send({
+                        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                        data: {
+                            content: 'Timeout dla ' + userId + 'zdjęty'
+                        },
+                    });
+                } else {
+                    return res.send({
+                        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                        data: {
+                            content: 'Brak uprawnień',
+                            flags: 64,
+                        },
+                    });
+                }
+            } catch (err) {
+                console.error('[Removetimeout] ' + err);
             }
         }
 

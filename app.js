@@ -104,7 +104,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
             try {
                 if (user.id === '485032592396124160') {
                     console.log(data.options);
-                    let userId = data.options.find(opt => opt.name === 'userId')?.value;
+                    let userId = data.options.find(opt => opt.name === 'userid')?.value;
                     console.log('[Removecooldown] removing cooldown for' + userId);
                     await kv.del(userId);
                     return res.send({

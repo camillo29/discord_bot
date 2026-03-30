@@ -60,7 +60,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                     const seconds = totalSeconds % 60;
                     console.log('[Shake] User: ' + user.id + ' remaining time: ' + hours + ':' + minutes + ':' + seconds);
                     if (hours > 0 && minutes > 0 && seconds > 0) {
-                        return res.send({
+                        return await res.send({
                             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                             data: {
                                 content: 'Masz cooldown, jeszcze: ' + hours + ':' + minutes + ':' + seconds,
@@ -80,7 +80,7 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                     }
                     console.log('[Shake] Locking user: ' + user.id + ' at: ' + new Date());
                     await kv.set(user.id, Date.now());
-                    return res.send({
+                    return await res.send({
                         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                         data: {
                             content: content

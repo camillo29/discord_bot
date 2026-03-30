@@ -30,6 +30,8 @@ const REMOVE_TIMEOUT_COMMAND = new SlashCommandBuilder()
     .setName('removetimeout')
     .setDescription('[Admin] zdejmij timeout')
     .addStringOption(option => option.setName('userId').setDescription('ID usera do usunięcia timeoutu').setRequired(true))
+    .setIntegrationTypes(0, 1)
+    .setContexts(0, 1, 2)
 
 const ALL_COMMANDS = [SHAKE_COMMAND, GIF_COMMAND, REMOVE_TIMEOUT_COMMAND];
 

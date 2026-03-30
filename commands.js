@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { capitalize, InstallGlobalCommands } from './utils.js';
-const { SlashCommandBuilder } = require('discord.js');
+import { SlashCommandBuilder } from 'discord.js';
 
 // const NEXT_EVENT_COMMAND = {
 //     name: 'nextevent',
@@ -29,7 +29,7 @@ const GIF_COMMAND = {
 const REMOVE_TIMEOUT_COMMAND = new SlashCommandBuilder()
     .setName('removetimeout')
     .setDescription('[Admin] zdejmij timeout')
-    .addStringOption(option => option.setName('userId').setDescription('ID usera do usunięcia timeoutu').setRequired(true))
+    .addStringOption((option) => option.setName('userid').setDescription('ID usera do usunięcia timeoutu').setRequired(true))
     .setIntegrationTypes(0, 1)
     .setContexts(0, 1, 2)
 

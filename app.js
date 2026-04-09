@@ -51,6 +51,10 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
         if (name === 'szejk') {
             // Send a message containing random shake gif
             try {
+                const rigg = await kv.get("rigg");
+                if (rigg == null) {
+                    kv.set('rigg', 0);
+                }
                 const lockedAt = await kv.get(user.id);
                 if (SHAKE_COOLDOWN_ENABLED && lockedAt !== null) {
                     const diff = (12 * 60 * 60 * 1000) - (new Date() - lockedAt);
@@ -69,7 +73,13 @@ app.post('/interactions', verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
                         });
                     }
                 }
-                let content = getRandomShake();
+                let content;
+                if (rigg < 3) {
+                    content = 'https://cdn.discordapp.com/attachments/1438117831685181443/1474033645110034587/ezgif.com-video-to-gif-converter_1.gif?ex=6998604f&is=69970ecf&hm=059d0573187f5243c6f001d0411f8cd118bbdac3e09167111699028d59e1e3bf&';
+                    await kv.set('rigg', rigg + 1);
+                } else {
+                    content = getRandomShake();
+                }
                 console.log('[Shake] Content prepared: ' + content);
                 if (content.includes('20260116_172828')) {
                     console.log('[Shake] timeouting user: ' + user.id)
